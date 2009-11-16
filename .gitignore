@@ -1,0 +1,5 @@
+*.pyc
+*.mo
+development.ini
+data/*
+Hub_Reporter.egg-info

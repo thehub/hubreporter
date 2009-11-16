@@ -1,0 +1,28 @@
+<%!
+    from hubreporter.widgets.ticket_form import mailreqmapping, mailreqopts
+    mailreqopts = dict(mailreqopts)
+%>
+<%
+    reqs = enumerate(kw['Request']['moremail'] + [kw['Request']['mailreq']])
+%>
+% for req_no, req in reqs:
+ * Reqest ${req_no + 1} (${mailreqopts[req['mailreqtype']]})
+   * Reqest data:
+    % for key in mailreqmapping[req['mailreqtype']]:
+     % if key == 'emaillist':
+     * ${key}: 
+        % for d in req[key]:
+        * ${d['fwdmail']} 
+        % endfor
+     % else:
+     * ${key}: ${req.get(key, '')} 
+     % endif
+    % endfor
+----
+% endfor
+
+% if req['mailreqmoreinfo']:
+ * Additional information on this person/address/list:
+
+${req['mailreqmoreinfo']}
+% endif

@@ -1,0 +1,4 @@
+#!/bin/sh
+unset https_proxy
+#export PYTHON_EGG_CACHE="/opt/apphomes/hubreporter/.eggs"
+../bin/paster serve --reload development.ini
